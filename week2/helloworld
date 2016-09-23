@@ -1,0 +1,24 @@
+;-------------------------
+; our very first program (32-bit Linux)
+;-------------------------
+
+section .data
+
+    msg: db "hello world!", 10
+
+section .text
+global ex1_main
+ex1_main:
+
+    mov edx, 15
+    mov ecx, msg
+    mov ebx, 1
+    mov eax, 4
+    int 0x80 ; int for interrupt - calls sys call
+
+;    mov ebx, 1
+;    mov eax, 1
+
+;    int 0x80
+	
+     ret
