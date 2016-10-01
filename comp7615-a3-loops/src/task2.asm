@@ -21,7 +21,7 @@ prompt1 db    "Enter a number: ", 0       ; don't forget nul terminator
 prompt2 db    "Enter another number: ", 0
 outmsg1 db    "You entered ", 0
 outmsg2 db    " and ", 0
-outmsg3 db    ", the product of these is ", 0
+outmsg3 db    ", using the equaltion (A+B)*A. The answer is ", 0
 
 
 ;
@@ -72,9 +72,11 @@ asm_main:
         mov     eax, outmsg3
         call    print_string      ; print out third message
 
+        ; executes equation of (input1 + input2) * input1
         mov 	eax, [input1]
-	mul	dword [input2]
-	call	print_int
+        add     eax, [input2]    ; add input 1 and 2 together
+	mul	dword [input1]  ; now mutliply that answer by input1
+	call	print_int        ; print it out
 	call 	print_nl	
 
         popa
